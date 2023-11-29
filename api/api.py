@@ -1,14 +1,10 @@
 from fastapi import FastAPI, UploadFile, File
 from starlette.responses import Response
-
 import numpy as np
 import cv2
 import io
-
 from datetime import datetime
-
 import random
-
 import pandas as pd
 
 # Initializing the API
