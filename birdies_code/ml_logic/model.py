@@ -6,7 +6,7 @@ from tensorflow.keras.layers.experimental.preprocessing import Resizing
 import numpy as np
 #from colorama import Fore, Style
 from typing import Tuple
-from birdies.ml_logic.encoders import ohe
+from birdies_code.ml_logic.encoders import ohe
 
 def initialize_model(num_of_classes) -> Model:
     """
@@ -47,12 +47,14 @@ def compile_model(model: Model, learning_rate_=0.0005) -> Model:
     return model
 
 
-def train_model(model, X, y) -> Tuple[Model, dict]:
+def train_model(model, X, y, num_of_classes) -> Tuple[Model, dict]:
     """
     trains model; returns (model, history)
     """
 
     from tensorflow.keras.callbacks import EarlyStopping
+
+    y = ohe(y, num_classes=num_of_classes)
 
     es = EarlyStopping(patience = 2)
 
