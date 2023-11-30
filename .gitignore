@@ -2,5 +2,5 @@ raw_data/
 uploaded_images/
 docker_images/
 data_sourcing/
-data_retrieval/10705
 data_retrieval/uploaded
+.DS_Store

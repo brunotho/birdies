@@ -51,12 +51,13 @@ def image_retrieval(bird_master_df, selected_birds_df, mydir=None, size = (256, 
         # Locate download links
         url_im = row['image_url']
 
-        # Attempt download via link ('image_url') from temp_df
+        ## Attempt download via link ('image_url') from temp_df
         try:
-            response = requests.get(url_im)
-
-        except:
-            print("This link does not work")
+            response = requests.get(url_im, timeout=10)
+            response.raise_for_status()  # Raise an HTTPError for bad responses
+        except requests.exceptions.RequestException as e:
+            print(f"Error downloading image from {url_im}: {e}")
+            continue  # Skip to the next iteration
 
         # Check if the download was successful
         if response.status_code == 200:
