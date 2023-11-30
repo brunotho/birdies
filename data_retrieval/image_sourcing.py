@@ -15,10 +15,17 @@ else:
 # load species to download
 selected_birds_df = pd.read_csv(csvpath)
 
+# # Import tracking_df
+# tracking_csv_path = "../bird_data/tracking.csv"  # Update with the actual path
+# if os.path.exists(tracking_csv_path):
+#     tracking_df = pd.read_csv(tracking_csv_path)
+# else:
+#     # If the tracking file doesn't exist, create a new DataFrame
+#     tracking_df = pd.DataFrame(columns=['species_no', 'downloaded', 'downloaded_no'])
 
 # import bird_master_df
-bird_master_df = pd.read_csv('../bird_data/test_script.csv')
-#bird_master_df = pd.read_csv('../data_sourcing/bird_master_df.csv') # csv source should be put in the cloud later
+#bird_master_df = pd.read_csv('../bird_data/test_script.csv')
+bird_master_df = pd.read_csv('../bird_data/bird_master_df.csv') # csv source should be put in the cloud later
 bird_master_df = bird_master_df.drop(columns='Unnamed: 0') # drop weird column
 
 species_no_to_download = selected_birds_df['species_no'].tolist()
@@ -53,7 +60,7 @@ def image_retrieval(bird_master_df, selected_birds_df, mydir=None, size = (256, 
 
         ## Attempt download via link ('image_url') from temp_df
         try:
-            response = requests.get(url_im, timeout=10)
+            response = requests.get(url_im, timeout=5)
             response.raise_for_status()  # Raise an HTTPError for bad responses
         except requests.exceptions.RequestException as e:
             print(f"Error downloading image from {url_im}: {e}")
@@ -119,4 +126,4 @@ for i in range(len(species_no_to_download)):
 
     image_retrieval(bird_master_df, function_input_df)
 
-    print(f"Finished download of {len(species_no_to_download)} specified species. Script ended.")
+print(f"Finished download of {len(species_no_to_download)} specified species. Script ended.")
