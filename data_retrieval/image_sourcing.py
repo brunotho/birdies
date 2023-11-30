@@ -17,9 +17,11 @@ selected_birds_df = pd.read_csv(csvpath)
 
 
 # import bird_master_df
-bird_master_df = pd.read_csv('../data_sourcing/bird_master_df.csv') # csv source should be put in the cloud later
+bird_master_df = pd.read_csv('../bird_data/test_script.csv')
+#bird_master_df = pd.read_csv('../data_sourcing/bird_master_df.csv') # csv source should be put in the cloud later
 bird_master_df = bird_master_df.drop(columns='Unnamed: 0') # drop weird column
 
+species_no_to_download = selected_birds_df['species_no'].tolist()
 
 def image_retrieval(bird_master_df, selected_birds_df, mydir=None, size = (256, 256), number = 1):
     '''Download images based on master url file (~10Mio. entries for ~11,000 species) for selected species'''
@@ -101,6 +103,19 @@ def image_retrieval(bird_master_df, selected_birds_df, mydir=None, size = (256, 
 
                 pass
 
-    print('Iterating over the rows of temp_df has been completed. Script ended.')
+    print('Iterating over the rows of temp_df has been completed.')
 
-image_retrieval(bird_master_df, selected_birds_df)
+print(species_no_to_download)
+
+for i in range(len(species_no_to_download)):
+
+    print(f"No starting to working on species {i+1} / {len(species_no_to_download)}: species_no {species_no_to_download[i]}")
+
+    print(selected_birds_df)
+
+    function_input_df = selected_birds_df.loc[selected_birds_df['species_no'] == species_no_to_download[i]]
+    print(function_input_df)
+
+    image_retrieval(bird_master_df, function_input_df)
+
+    print(f"Finished download of {len(species_no_to_download)} specified species. Script ended.")
