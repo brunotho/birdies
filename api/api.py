@@ -7,6 +7,9 @@ from datetime import datetime
 import random
 import pandas as pd
 
+# loading cached data warehouse from csv file
+warehouse_df = pd.read_csv('bird_data/augmented_warehouse.csv').set_index('species_no')
+
 # Initializing the API
 app = FastAPI()
 
@@ -50,6 +53,8 @@ async def receive_image(img: UploadFile=File(...)):
     first_random_scientific_name = bird_species_df[bird_species_df.index == first_random_species_no]['scientific_name'].iloc[0]
     # generate random probability
     first_prob = "%.2f" % round(random.uniform(0.7, 1), 2)
+    # load description
+    first_description = warehouse_df[warehouse_df.index == first_random_species_no]['General_Describtion'].iloc[0]
 
     ## Second likely species
     # load random number within the range of bird species numbers
@@ -58,6 +63,8 @@ async def receive_image(img: UploadFile=File(...)):
     second_random_scientific_name = bird_species_df[bird_species_df.index == second_random_species_no]['scientific_name'].iloc[0]
     # generate random probability
     second_prob = "%.2f" % round(random.uniform(0.55, 0.69), 2)
+    # load description
+    second_description = warehouse_df[warehouse_df.index == second_random_species_no]['General_Describtion'].iloc[0]
 
     ## Third likely species
     # load random number within the range of bird species numbers
@@ -66,6 +73,8 @@ async def receive_image(img: UploadFile=File(...)):
     third_random_scientific_name = bird_species_df[bird_species_df.index == third_random_species_no]['scientific_name'].iloc[0]
     # generate random probability
     third_prob = "%.2f" % round(random.uniform(0, 0.54), 2)
+    # load description
+    third_description = warehouse_df[warehouse_df.index == third_random_species_no]['General_Describtion'].iloc[0]
 
     response = {
         "status": "ok",
@@ -74,17 +83,20 @@ async def receive_image(img: UploadFile=File(...)):
         "first_likely_bird_species": {
             "species_no": first_random_species_no,
             "scientific_name": first_random_scientific_name,
-            "probability": first_prob
+            "probability": first_prob,
+            "description": first_description
         },
         "second_likely_bird_species": {
             "species_no": second_random_species_no,
             "scientific_name": second_random_scientific_name,
-            "probability": second_prob
+            "probability": second_prob,
+            "description": second_description
         },
         "third_likely_bird_species": {
         "species_no": third_random_species_no,
         "scientific_name": third_random_scientific_name,
         "probability": third_prob
+        "description": third_description
         }
     }
 
