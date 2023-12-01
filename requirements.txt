@@ -119,3 +119,4 @@ fastapi==0.104.1
 opencv-python-headless #==4.8.1.78
 python-multipart==0.0.6
 # tensorflow # 2.15.0
+tqdm==4.64.1

@@ -33,8 +33,8 @@ else:
     tracking_df = pd.DataFrame(columns=['species_no', 'downloaded', 'downloaded_no'])
 
 ### BIRD MASTER IMPORT
-bird_master_df = pd.read_csv('../bird_data/test_script.csv') # THIS NEEDS CHANGING ONCE WE WORK WITH THE COMPLETE SET OF BIRDS
-# bird_master_df = pd.read_csv('../data_sourcing/bird_master_df.csv')
+# bird_master_df = pd.read_csv('../bird_data/test_script.csv') # THIS NEEDS CHANGING ONCE WE WORK WITH THE COMPLETE SET OF BIRDS
+bird_master_df = pd.read_csv('../data_sourcing/bird_master_df.csv')
 bird_master_df = bird_master_df.drop(columns='Unnamed: 0')  # drop weird column
 ## Conversion of all selected species_no into an iterable list
 species_no_to_download = selected_birds_df['species_no'].tolist()
@@ -61,6 +61,7 @@ def image_retrieval(bird_master_df, selected_birds_df, mydir=None, size=(256, 25
         itercount += 1
 
         print(f"Now working on row {itercount} / {temp_df_row_count} in temp_df. There are {temp_df_row_count - (itercount)} rows left.")
+
 
         if row['image_id'] in temp_list:
             print("Already successfully downloaded a picture from this list of duplicate URLs.")
