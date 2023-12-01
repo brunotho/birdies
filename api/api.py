@@ -8,7 +8,7 @@ import random
 import pandas as pd
 
 # loading cached data warehouse from csv file
-warehouse_df = pd.read_csv('bird_data/augmented_warehouse.csv').set_index('species_no')
+warehouse_df = pd.read_csv('bird_data/augmented_warehouse_no_na.csv').set_index('species_no')
 
 # Initializing the API
 app = FastAPI()
