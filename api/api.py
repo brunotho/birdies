@@ -95,7 +95,7 @@ async def receive_image(img: UploadFile=File(...)):
         "third_likely_bird_species": {
         "species_no": third_random_species_no,
         "scientific_name": third_random_scientific_name,
-        "probability": third_prob
+        "probability": third_prob,
         "description": third_description
         }
     }
