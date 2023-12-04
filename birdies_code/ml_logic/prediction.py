@@ -6,7 +6,7 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 
 
 def load_model_():
-    model = load_model("/home/bruno/code/brunothormaehlen/birdies/dirty_model#5")
+    model = load_model("dirty_model_5")
     return model
 
 def preproc_image(X_pred):
