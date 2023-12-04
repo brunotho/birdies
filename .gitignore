@@ -4,3 +4,4 @@ docker_images/
 data_sourcing/
 data_retrieval/uploaded
 .DS_Store
+dirty_model_5/
