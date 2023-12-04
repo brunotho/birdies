@@ -1,15 +1,19 @@
+import numpy as np
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.image import resize #resize_with_crop_or_pad,
 from tensorflow.keras.applications.vgg16 import preprocess_input
-import numpy as np
 
-def load_model():
+
+def load_model_():
     model = load_model("/home/bruno/code/brunothormaehlen/birdies/dirty_model#5")
     return model
 
 def preproc_image(X_pred):
-    X_pred = resize(X_pred)
+    X_pred = tf.convert_to_tensor(X_pred)
+    X_pred = resize(X_pred, (256,256))
     X_pred = preprocess_input(X_pred)
+    X_pred = tf.expand_dims(X_pred, axis=0)
     return X_pred
 
 def model_predict(model, X_pred):
