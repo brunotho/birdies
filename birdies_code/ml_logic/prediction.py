@@ -25,7 +25,8 @@ def dirty_to_output(y_pred):
     converts y_pred array to dictionary of top 3 likely birds: {(species_num, proba),(),()}
     """
     probabilities = np.ndarray.tolist(y_pred)[0]
-    class_names = ['02091',
+    class_names = [
+    '02091',
     '10474',
     '10491',
     '10512',
@@ -34,7 +35,8 @@ def dirty_to_output(y_pred):
     '10828',
     '10848',
     '10883',
-    '10921']
+    '10921'
+    ]
 
     temp = [(key, value)
             for index, (key, value) in enumerate(zip(class_names, probabilities))]

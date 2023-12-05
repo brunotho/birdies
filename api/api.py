@@ -6,8 +6,8 @@ import io
 from datetime import datetime
 import random
 import pandas as pd
-from birdies_code.ml_logic.prediction import load_model_
-from birdies_code.ml_logic.prediction import prediction
+from birdies_code.ml_logic.prediction_50species import load_model_
+from birdies_code.ml_logic.prediction_50species import prediction
 
 model = load_model_()
 
