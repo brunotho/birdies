@@ -5,6 +5,7 @@ from tensorflow.image import resize #resize_with_crop_or_pad,
 from tensorflow.keras.applications.vgg16 import preprocess_input
 
 
+
 def load_model_():
     model = load_model("model_species50_v6")
     return model

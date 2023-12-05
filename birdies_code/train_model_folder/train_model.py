@@ -67,7 +67,7 @@ def load_model(input_shape_=(256, 256, 3)): #VGG16 base model
     return model
 
 
-def defining_model(base_model, classes, input_shape_=(256, 256, 3)):
+def defining_model(base_model_, classes, input_shape_=(256, 256, 3)):
 
     #base_model = VGG16(weights="imagenet", include_top=False, input_shape=inputshape)
     base_model = base_model_
@@ -141,13 +141,6 @@ def train_model(model, dataset_train, dataset_val):
         verbose = 1,
         restore_best_weights = True)
 
-    mc = ModelCheckpoint(
-        "/content/drive/MyDrive/Bird project/Images/MVP #1/model_checkpoints",
-        save_weights_only=True,
-        monitor='val_accuracy',
-        mode='max',
-        save_best_only=True)
-
     plat = ReduceLROnPlateau(
         monitor="val_loss",
         factor=0.1,
@@ -163,7 +156,7 @@ def train_model(model, dataset_train, dataset_val):
                         validation_data=dataset_val,
                         epochs=100,
                         batch_size=16,
-                        callbacks=[es, mc, plat])
+                        callbacks=[es, plat])
 
     return model, history
 
@@ -175,7 +168,7 @@ def saving_model(model, save_dir):
 def run_all(data_dir, save_dir):
     ds_train, ds_test, ds_val, classes_ = define_sets_and_params(data_dir)
     base_model_ = load_model()
-    model = defining_model(base_model=base_model_, classes=classes_)
+    model = defining_model(base_model_=base_model_, classes=classes_)
     model = compile_model(model)
     model, history = train_model(model, ds_train, ds_val)
     saving_model(model, save_dir)
