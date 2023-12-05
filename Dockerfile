@@ -11,7 +11,8 @@ COPY bird_data /bird_data
 COPY api /api
 COPY uploaded_images /uploaded_images
 COPY birdies_code /birdies_code
-COPY dirty_model_5 /dirty_model_5
+# COPY dirty_model_5 /dirty_model_5
+COPY model_species50_v6 /model_species50_v6
 
 # RUN pip install .
 
