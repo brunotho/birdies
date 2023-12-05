@@ -5,3 +5,6 @@ data_sourcing/
 data_retrieval/uploaded
 .DS_Store
 dirty_model_5/
+train_model_folder/image_data/
+train_model_folder/saved_model/
+model_50species_v6/
