@@ -18,8 +18,8 @@ selected_birds_df = pd.read_csv(csvpath)
 
 ### CREATING A CSV FOR DOWNLOAD LOGGING [if non-existent]
 ## Specify the directory path
-bird_data_dir = "../bird_data/" # THIS MAY CALL FOR AN ADJUSTMENT IF DEPLOYED ON A DIFFERENT MACHINE / ENIVRONMENT
-tracking_csv_path = os.path.join(bird_data_dir, "tracking.csv")
+bird_data_dir = "../bird_data/"
+tracking_csv_path = os.path.join(bird_data_dir, "tracking.csv")  # ADJUST FILENAME IN THE REAL THING
 
 ## Check if the directory exists, if not, create it
 if not os.path.exists(bird_data_dir):
@@ -200,6 +200,7 @@ with tqdm(total=total_image_urls_all_species, desc="Total selection progress") a
         # Update the total progress bar after processing each species
         total_progress_bar.update(species_progress_bar.n)
 
-# TRACKING_DF EXPORT
-tracking_df.to_csv(tracking_csv_path, index=False)
+        # TRACKING_DF EXPORT
+        tracking_df.to_csv(tracking_csv_path, index=False)
+
 print(f"\nFinished download of {len(species_no_to_download)} specified species. Script ended.")
