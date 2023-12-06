@@ -10,3 +10,6 @@ birdies_code/train_model_folder/saved_model/
 model_50species_v6/
 model_species50_v6/
 birdies_code/binary_model/
+birdies_code/train_model_folder/checkpoint
+birdies_code/train_model_folder/weights.data-00000-of-00001
+birdies_code/train_model_folder/weights.index

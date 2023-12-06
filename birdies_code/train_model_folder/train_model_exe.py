@@ -1,3 +1,3 @@
-from birdies_code.train_model_folder.train_model import run_all
+from birdies_code.train_model_folder.train_model_adjusted import run_all
 
-run_all(data_dir="birdies_code/train_model_folder/image_data", save_dir="birdies_code/train_model_folder/saved_model")
+run_all(data_dir="image_data", save_dir="saved_model")
