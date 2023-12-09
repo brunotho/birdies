@@ -213,4 +213,4 @@ def run_all(data_dir, save_dir, history_save_name, ds_test_save_name):
 
 #from birdies_code.train_model_folder.train_model_adjusted import run_all
 
-run_all(data_dir="image_data", save_dir="saved_model", history_save_name="saved_history.pickle", ds_test_save_name="saved_test_dataset")
+run_all(data_dir="image_data", save_dir="saved_model", history_save_name="saved_history.pickle", ds_test_save_name="saved_test_dataset.pickle")
